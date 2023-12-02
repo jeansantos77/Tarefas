@@ -30,12 +30,14 @@ namespace Tarefas.API.Application
 
         public async Task Add(Tarefa entidade)
         {
-            if (entidade.Status.Value.Equals(null))
+            if (!entidade.Status.HasValue)
             {
                 throw new Exception("Status deve ser 0 (Pendente), 1 (Andamento) ou 2 (Concluida).");
             }
 
-            if ((await GetAllByProjeto(entidade.ProjetoId)).Count() > 20)
+            int quantidadeTarefas = (await GetAllByProjeto(entidade.ProjetoId)).Count();
+
+            if (quantidadeTarefas >= 20)
             {
                 throw new Exception("O limite máximo para o projeto são 20 tarefas! Não será possível inserir a tarefa.");
             }
@@ -90,10 +92,8 @@ namespace Tarefas.API.Application
             {
                 throw new Exception($"Usuário [{usuarioId}] não encontrado!");
             }
-            else if (!usuario.IsGerente)
-            {
-                throw new Exception($"Somente Gerentes tem permissão para visualizar tarefas concluídas!");
-            }
+
+            ValidateIfUsuarioIsGerente(usuario);
 
             DateTime dataInicial = DateTime.Today.AddDays(numeroDias * -1);
 
@@ -114,15 +114,22 @@ namespace Tarefas.API.Application
                 TarefaConcluidaModel tc = new TarefaConcluidaModel
                 {
                     Usuario = (await _usuarioRepository.GetById(item.UsuarioId)).Nome,
-                    MediaTarefasConcluidas = (double)item.Count / (double) numeroDias
+                    MediaTarefasConcluidas = (double)item.Count / (double)numeroDias
                 };
-                
+
                 tarefasConcluidas.Add(tc);
             }
 
             return tarefasConcluidas;
         }
 
+        public void ValidateIfUsuarioIsGerente(Usuario usuario)
+        {
+            if (!usuario.IsGerente)
+            {
+                throw new Exception($"Somente Gerentes tem permissão para visualizar tarefas concluídas!");
+            }
+        }
 
         public async Task<List<Tarefa>> GetTarefasConcluidas(DateTime dataInicial, DateTime dataFinal, int usuarioId)
         {
@@ -132,10 +139,8 @@ namespace Tarefas.API.Application
             {
                 throw new Exception($"Usuário [{usuarioId}] não encontrado!");
             }
-            else if (!usuario.IsGerente)
-            {
-                throw new Exception($"Somente Gerentes tem permissão para visualizar tarefas concluídas!");
-            }
+
+            ValidateIfUsuarioIsGerente(usuario);
 
             List<Tarefa> tarefas = await _tarefaRepository.GetTarefasConcluidas(dataInicial, dataFinal);
 

@@ -5,11 +5,13 @@ VisualStudioVersion = 16.0.30907.101
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tarefas.API", "Tarefas\Tarefas.API.csproj", "{0F38CEDB-1E20-490F-A8F0-5B1519460884}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tarefas.API.Infra.Data", "Tarefas.API.Infra.Data\Tarefas.API.Infra.Data.csproj", "{244AECF1-1A70-4585-A93C-686A5857DA02}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tarefas.API.Infra.Data", "Tarefas.API.Infra.Data\Tarefas.API.Infra.Data.csproj", "{244AECF1-1A70-4585-A93C-686A5857DA02}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tarefas.API.Domain", "Tarefas.API.Domain\Tarefas.API.Domain.csproj", "{1A0FEBEF-BBAD-4876-8562-F62E7437B6C4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tarefas.API.Domain", "Tarefas.API.Domain\Tarefas.API.Domain.csproj", "{1A0FEBEF-BBAD-4876-8562-F62E7437B6C4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tarefas.API.Application", "Tarefas.API.Application\Tarefas.API.Application.csproj", "{00A2BBFE-18A2-45CB-B9F9-F4380871B0E2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tarefas.API.Application", "Tarefas.API.Application\Tarefas.API.Application.csproj", "{00A2BBFE-18A2-45CB-B9F9-F4380871B0E2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tarefas.API.Tests", "Tarefas.API.Tests\Tarefas.API.Tests.csproj", "{6207E145-13F6-4B3A-8587-214E897FC21A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{00A2BBFE-18A2-45CB-B9F9-F4380871B0E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{00A2BBFE-18A2-45CB-B9F9-F4380871B0E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{00A2BBFE-18A2-45CB-B9F9-F4380871B0E2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6207E145-13F6-4B3A-8587-214E897FC21A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6207E145-13F6-4B3A-8587-214E897FC21A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6207E145-13F6-4B3A-8587-214E897FC21A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6207E145-13F6-4B3A-8587-214E897FC21A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
