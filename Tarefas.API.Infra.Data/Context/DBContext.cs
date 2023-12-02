@@ -14,6 +14,7 @@ namespace Tarefas.API.Infra.Data.Context
         public DbSet<Projeto> Projetos { get; set; }
         public DbSet<Tarefa> Tarefas { get; set; }
         public DbSet<Comentario> Comentarios { get; set; }
+        public DbSet<Historico> Historicos { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -30,6 +31,7 @@ namespace Tarefas.API.Infra.Data.Context
             modelBuilder.ApplyConfiguration(new TarefaConfigurationMap());
             modelBuilder.ApplyConfiguration(new UsuarioConfigurationMap());
             modelBuilder.ApplyConfiguration(new ComentarioConfigurationMap());
+            modelBuilder.ApplyConfiguration(new HistoricoConfigurationMap());
 
             base.OnModelCreating(modelBuilder);
         }

@@ -11,7 +11,7 @@ namespace Tarefas.API.Infra.Data.Repository
     {
         public async Task<List<Projeto>> GetAllByUsuario(int usuarioId)
         {
-            return await GetAll(p => p.Usuario.Id == usuarioId);
+            return await GetAll(p => p.UsuarioId == usuarioId);
         }
     }
 }

@@ -17,6 +17,7 @@ namespace Tarefas.API.Domain.Entities
         public virtual Projeto Projeto { get; set; }
         public virtual Usuario Usuario { get; set; }
         public virtual List<Comentario> Comentarios { get; set; }
+        public virtual List<Historico> Historicos { get; set; }
 
     }
 }

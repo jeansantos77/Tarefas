@@ -37,6 +37,7 @@ namespace Tarefas.API
 
             services.AddDbContext<DBContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
+            services.AddScoped<IHistoricoRepository, HistoricoRepository>();
             services.AddScoped<IComentarioRepository, ComentarioRepository>();
             services.AddScoped<IUsuarioRepository, UsuarioRepository>();
             services.AddScoped<ITarefaRepository, TarefaRepository>();

@@ -5,9 +5,9 @@ using Tarefas.API.Domain.Interfaces;
 
 namespace Tarefas.API.Infra.Data.Repository
 {
-    public class ComentarioRepository : BaseRepository<Comentario>, IComentarioRepository
+    public class HistoricoRepository : BaseRepository<Historico>, IHistoricoRepository
     {
-        public async Task<List<Comentario>> GetAllByTarefa(int id)
+        public async Task<List<Historico>> GetAllByTarefa(int id)
         {
             return await GetAll(p => p.TarefaId == id);
         }

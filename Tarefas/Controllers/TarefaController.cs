@@ -147,5 +147,12 @@ namespace Tarefas.API.Controllers
             return Ok(await _tarefaService.GetComentariosByTarefa(tarefaId));
         }
 
+        [HttpGet]
+        [Route("ListaTodosHistoricos/{tarefaId}")]
+        public async Task<IActionResult> GetHistoricosByTarefa([FromRoute] int tarefaId)
+        {
+            return Ok(await _tarefaService.GetHistoricosByTarefa(tarefaId));
+        }
+
     }
 }

@@ -10,6 +10,7 @@ namespace Tarefas.API.Application.Interfaces
     {
         Task<List<Tarefa>> GetAllByProjeto(int id);
         Task<List<Comentario>> GetComentariosByTarefa(int id);
+        Task<List<Historico>> GetHistoricosByTarefa(int id);
         Task<Tarefa> GetByIdAsNoTracking(int id);
         Task<List<TarefaConcluidaModel>> GetMediaTarefasConcluidasByUsuario(int numeroDias, int usuarioId );
         Task<List<Tarefa>> GetTarefasConcluidas(DateTime dataInicial, DateTime dataFinal, int usuarioId);

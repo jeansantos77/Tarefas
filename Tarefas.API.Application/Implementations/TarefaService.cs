@@ -15,14 +15,17 @@ namespace Tarefas.API.Application
         private ITarefaRepository _tarefaRepository;
         private IUsuarioRepository _usuarioRepository;
         private IComentarioRepository _comentarioRepository;
+        private IHistoricoRepository _historicoRepository;
 
         public TarefaService(ITarefaRepository tarefaRepository
                            , IUsuarioRepository usuarioRepository
-                           , IComentarioRepository comentarioRepository)
+                           , IComentarioRepository comentarioRepository
+                           , IHistoricoRepository historicoRepository)
         {
             _tarefaRepository = tarefaRepository;
             _usuarioRepository = usuarioRepository;
             _comentarioRepository = comentarioRepository;
+            _historicoRepository = historicoRepository;
         }
 
         public async Task Add(Tarefa entidade)
@@ -166,5 +169,11 @@ namespace Tarefas.API.Application
         {
             return await _comentarioRepository.GetAllByTarefa(id);
         }
+
+        public async Task<List<Historico>> GetHistoricosByTarefa(int id)
+        {
+            return await _historicoRepository.GetAllByTarefa(id);
+        }
+
     }
 }

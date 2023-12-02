@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using Tarefas.API.Domain.Entities;
 using Tarefas.API.Domain.Enumerators;
@@ -13,7 +14,7 @@ namespace Tarefas.API.Infra.Data.Repository
     {
         public async Task<List<Tarefa>> GetAllByProjeto(int id)
         {
-            return await GetAll(p => p.Projeto.Id == id);
+            return await GetAll(p => p.ProjetoId == id);
         }
 
         public async Task<Tarefa> GetByIdAsNoTracking(int id)
@@ -26,16 +27,54 @@ namespace Tarefas.API.Infra.Data.Repository
             return await GetAll(p => p.Status == Status.Concluida && (p.Conclusao >= dataInicial && p.Conclusao <= dataFinal));
         }
 
-        public async override Task Add(Tarefa entidade)
+        public override async Task Update(Tarefa entidade)
         {
-            await _dbContext.Set<Tarefa>().AddAsync(entidade);
+            Tarefa tarefa = await GetByIdAsNoTracking(entidade.Id);
 
-            foreach (var item in entidade.Comentarios)
+            PropertyInfo[] properties = typeof(Tarefa).GetProperties();
+
+            using (var transaction = _dbContext.Database.BeginTransaction())
             {
-                await _dbContext.Set<Comentario>().AddAsync(item);
+                try
+                {
+                    _dbContext.Set<Tarefa>().Update(entidade);
+
+                    foreach (var property in properties)
+                    {
+                        if (!property.Name.Equals("Historicos"))
+                        {
+                            object value1 = property.GetValue(tarefa);
+                            object value2 = property.GetValue(entidade);
+
+                            if (!object.Equals(value1, value2))
+                            {
+
+                                Historico hist = new Historico
+                                {
+                                    TarefaId = entidade.Id,
+                                    ValorAnterior = $"{property.Name} = {((value1 == null) ? string.Empty : value1.ToString())}",
+                                    ValorAtual = $"{property.Name} = {((value2 == null) ? string.Empty : value2.ToString())}",
+                                    DataModificacao = DateTime.Now,
+                                    UsuarioId = entidade.UsuarioId
+                                };
+
+                                await _dbContext.Set<Historico>().AddAsync(hist);
+                            }
+                        }
+                    }
+
+                    await _dbContext.SaveChangesAsync();
+
+                    transaction.Commit();
+                }
+                catch (Exception ex)
+                {
+                    transaction.Rollback();
+                    throw new Exception(ex.Message);
+                }
             }
 
-            await _dbContext.SaveChangesAsync();
         }
+
     }
 }

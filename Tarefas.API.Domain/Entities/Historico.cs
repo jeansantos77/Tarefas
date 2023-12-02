@@ -2,7 +2,7 @@
 
 namespace Tarefas.API.Domain.Entities
 {
-    class Historico
+    public class Historico
     {
         public int Id { get; set; }
         public string ValorAnterior { get; set; }

@@ -20,13 +20,13 @@ namespace Tarefas.API.Infra.Data.Repository
             _dbContext = new DBContext(_optionBuilder);
         }
 
-        public virtual async Task Add(T entidade)
+        public async Task Add(T entidade)
         {
              await _dbContext.Set<T>().AddAsync(entidade);
              await _dbContext.SaveChangesAsync();
         }
 
-        public async Task Update(T entidade)
+        public virtual async Task Update(T entidade)
         {
             _dbContext.Set<T>().Update(entidade);
             await _dbContext.SaveChangesAsync();
