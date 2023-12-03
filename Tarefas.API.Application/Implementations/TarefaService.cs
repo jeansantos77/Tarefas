@@ -35,6 +35,11 @@ namespace Tarefas.API.Application
                 throw new Exception("Status deve ser 0 (Pendente), 1 (Andamento) ou 2 (Concluida).");
             }
 
+            if (!entidade.Prioridade.HasValue)
+            {
+                throw new Exception("Prioridade deve ser 0 (Baixa), 1 (Média) ou 2 (Alta).");
+            }
+
             int quantidadeTarefas = (await GetAllByProjeto(entidade.ProjetoId)).Count();
 
             if (quantidadeTarefas >= 20)

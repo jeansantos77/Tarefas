@@ -24,13 +24,6 @@ namespace Tarefas.API.Application.Implementations
 
         public async Task Add(Projeto entidade)
         {
-            List<Tarefa> tarefas = await _tarefaRepository.GetAllByProjeto(entidade.Id);
-
-            if (tarefas.Count() == 20)
-            {
-                throw new Exception("Limite de tarefas atingido [20]! Não é permitido adicionar mais tarefas neste projeto.");
-            }
-
             await _projetoRepository.Add(entidade);
         }
 
