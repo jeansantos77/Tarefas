@@ -51,7 +51,7 @@ namespace Tarefas.API.Controllers
             }
             catch (Exception ex)
             {
-                return NotFound(ex.InnerException.Message);
+                return NotFound((ex.InnerException != null) ? ex.InnerException.Message : ex.Message);
             }
 
             return StatusCode(StatusCodes.Status201Created, projetoModel);
@@ -71,7 +71,7 @@ namespace Tarefas.API.Controllers
             }
             catch (Exception ex)
             {
-                return NotFound(ex.InnerException.Message);
+                return NotFound((ex.InnerException != null) ? ex.InnerException.Message : ex.Message);
             }
 
             return Ok(projetoModel);
@@ -92,7 +92,7 @@ namespace Tarefas.API.Controllers
             }
             catch (Exception ex)
             {
-                return NotFound(ex.InnerException.Message);
+                return NotFound((ex.InnerException != null) ? ex.InnerException.Message : ex.Message);
             }
 
             return Ok();

@@ -24,7 +24,7 @@ namespace Tarefas.API.Infra.Data.EntityConfiguration
             builder.HasOne(h => h.Tarefa)
                    .WithMany(h => h.Historicos)
                    .HasForeignKey(h => h.TarefaId)
-                   .OnDelete(DeleteBehavior.NoAction)
+                   .OnDelete(DeleteBehavior.Cascade)
                    .IsRequired();
 
             builder.HasOne(h => h.Usuario)

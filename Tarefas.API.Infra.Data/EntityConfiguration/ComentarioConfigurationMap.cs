@@ -17,7 +17,7 @@ namespace Tarefas.API.Infra.Data.EntityConfiguration
             builder.HasOne(t => t.Tarefa)
                    .WithMany(p => p.Comentarios)
                    .HasForeignKey(t => t.TarefaId)
-                   .OnDelete(DeleteBehavior.NoAction)
+                   .OnDelete(DeleteBehavior.Cascade)
                    .IsRequired();
         }
     }
