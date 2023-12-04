@@ -20,7 +20,7 @@ namespace Tarefas.API.Infra.Data.Context
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("server=DESKTOP-AIP5M5I;database=DbTarefas;trusted_connection=true;");
+                optionsBuilder.UseSqlServer("server=localhost, 1450;database=DbTarefas;User Id=sa;Password=Senha@2023;");
                 base.OnConfiguring(optionsBuilder);
             }
         }
