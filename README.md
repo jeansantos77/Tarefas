@@ -4,6 +4,7 @@ EXPLICAÇÕES
 2. Foi usado o padrão Repository
 3. Na camada de testes tem uma pasta chamada "Cobertura dos Testes" com um html e uma imagem deste html monstrando o % de cobertura
 4. Na camada de infra tem uma pasta Scripts contendo o script para os usuários
+5. Tem uma pasta Docker com uma imagem mostrando que foi executado do Docker
 
 
 PERGUNTAS PARA O PO
@@ -27,22 +28,9 @@ MELHORIAS
 
 DOCKER
 ------
-# baixa a imagem do sqlserver
-docker pull mcr.microsoft.com/mssql/server:2019-latest
-
-# cria o container do sqlserver
-docker run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=Senha@2023" -p 1450:1433 --name sqlserverdb -d mcr.microsoft.com/mssql/server:2019-latest
-
-# cria a imagem da api
-docker build -t image_apitarefas -f Dockerfile .
-
-# executa o container baseado na imagem criada
-docker run --name container_apitarefas -p 8000:80 image_apitarefas .
+# foi criado um docker-compose.yml para criar o container do sqlserver e api
+# depois foi executado as migrations para criar o banco
 
 # executa o docker-compose
 docker compose up --build
 
-
-# Criei o arquivo docker-compose.yml para executar a api acessando o banco do container do sqlserver mas não tive sucesso
-# Criei o container do sqlserver e da api mas não consegui rodar, localmente a api acessa o sqlserver do container mas a api rodando no container deu erro para acessar, pesquisando percebi
-# que precisava criar o docker-compose mas deu erro na execução

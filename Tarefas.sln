@@ -17,7 +17,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		docker-compose.yml = docker-compose.yml
 		Dockerfile = Dockerfile
+		Docker\evidencia.png = Docker\evidencia.png
 		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docker", "Docker", "{1654EBB0-50DD-484A-8AD0-C1111F3EE9C2}"
+	ProjectSection(SolutionItems) = preProject
+		Docker\evidencia.png = Docker\evidencia.png
 	EndProjectSection
 EndProject
 Global
@@ -49,6 +55,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{1654EBB0-50DD-484A-8AD0-C1111F3EE9C2} = {F38E69D1-8FA0-4C4C-8252-8E8535D84277}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A529059C-CF81-4513-A9BD-A89086928B4F}
