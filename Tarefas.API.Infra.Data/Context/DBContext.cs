@@ -16,16 +16,6 @@ namespace Tarefas.API.Infra.Data.Context
         public DbSet<Comentario> Comentarios { get; set; }
         public DbSet<Historico> Historicos { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            if (!optionsBuilder.IsConfigured)
-            {
-                optionsBuilder.UseSqlServer("server=sqldata;database=DbTarefas;User Id=sa;Password=Senha@2023;");
-                //optionsBuilder.UseSqlServer("server=localhost,1450;database=DbTarefas;User Id=sa;Password=Senha@2023;");
-                base.OnConfiguring(optionsBuilder);
-            }
-        }
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new ProjetoConfigurationMap());

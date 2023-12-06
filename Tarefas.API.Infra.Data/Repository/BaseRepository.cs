@@ -11,13 +11,11 @@ namespace Tarefas.API.Infra.Data.Repository
 {
     public class BaseRepository<T> : IBaseRepository<T> where T : class
     {
-        private readonly DbContextOptions<DBContext> _optionBuilder;
         protected readonly DBContext _dbContext;
 
-        public BaseRepository()
+        public BaseRepository(DBContext context)
         {
-            _optionBuilder = new DbContextOptions<DBContext>();
-            _dbContext = new DBContext(_optionBuilder);
+            _dbContext = context;
         }
 
         public async Task Add(T entidade)

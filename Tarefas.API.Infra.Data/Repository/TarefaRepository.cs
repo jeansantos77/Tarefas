@@ -7,11 +7,16 @@ using System.Threading.Tasks;
 using Tarefas.API.Domain.Entities;
 using Tarefas.API.Domain.Enumerators;
 using Tarefas.API.Domain.Interfaces;
+using Tarefas.API.Infra.Data.Context;
 
 namespace Tarefas.API.Infra.Data.Repository
 {
     public class TarefaRepository : BaseRepository<Tarefa>, ITarefaRepository
     {
+        public TarefaRepository(DBContext context) : base(context)
+        {
+
+        }
         public async Task<List<Tarefa>> GetAllByProjeto(int id)
         {
             return await GetAll(p => p.ProjetoId == id);

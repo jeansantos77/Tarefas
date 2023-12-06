@@ -11,9 +11,7 @@ using Tarefas.API.Application.Interfaces;
 using Tarefas.API.Domain.Interfaces;
 using Tarefas.API.Infra.Data.Context;
 using Tarefas.API.Infra.Data.Repository;
-using AutoMapper;
 using Tarefas.API.Map;
-using System.Text.Json.Serialization;
 
 namespace Tarefas.API
 {
